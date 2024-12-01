@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Q9Fragment">
+
+    <View
+        android:id="@+id/background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/skyblue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/optionBacking"
+        android:layout_width="290dp"
+        android:layout_height="376dp"
+        app:layout_constraintEnd_toEndOf="@+id/background"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toBottomOf="@+id/questionBacking"
+        app:srcCompat="@drawable/option_backing" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="212dp"
+        android:layout_height="78dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/background"
+        app:srcCompat="@drawable/planetze_logo" />
+
+    <ImageView
+        android:id="@+id/questionBacking"
+        android:layout_width="353dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/background"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toBottomOf="@+id/category"
+        app:srcCompat="@drawable/question_backing" />
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/aqua"
+        android:text="@string/next"
+        android:textColor="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toBottomOf="@+id/optionBacking" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="329dp"
+        android:layout_height="44dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nextButton"
+        app:layout_constraintVertical_bias="0.0"
+        android:max="105"
+        android:progress="40" />
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="318dp"
+        android:layout_height="64dp"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text="@string/q9"
+        android:textColor="@color/aqua"
+        app:layout_constraintBottom_toBottomOf="@+id/questionBacking"
+        app:layout_constraintEnd_toEndOf="@+id/questionBacking"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="@+id/questionBacking"
+        app:layout_constraintTop_toTopOf="@+id/questionBacking"
+        app:layout_constraintVertical_bias="0.446" />
+
+    <TextView
+        android:id="@+id/noneSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/none_selected"
+        android:textColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="@+id/optionBacking"
+        app:layout_constraintEnd_toEndOf="@+id/optionBacking"
+        app:layout_constraintStart_toStartOf="@+id/optionBacking"
+        app:layout_constraintTop_toBottomOf="@+id/options"
+        app:layout_constraintVertical_bias="1.0"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="175dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/cat2"
+        android:textSize="28sp"
+        android:fontFamily="sans-serif-black"
+        android:textAlignment="center"
+        android:textColor="@color/darkblue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+    <TextView
+        android:id="@+id/beef"
+        android:layout_width="58dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="93dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/beef"
+        android:textAlignment="textEnd"
+        android:textColor="@color/darkblue"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/optionBacking"
+        app:layout_constraintTop_toTopOf="@id/optionBacking" />
+
+    <TextView
+        android:id="@+id/pork"
+        android:layout_width="58dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/pork"
+        android:textAlignment="textEnd"
+        android:textColor="@color/darkblue"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/optionBacking"
+        app:layout_constraintTop_toBottomOf="@id/beef" />
+
+    <TextView
+        android:id="@+id/chicken"
+        android:layout_width="69dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/chicken"
+        android:textAlignment="textEnd"
+        android:textColor="@color/darkblue"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/optionBacking"
+        app:layout_constraintTop_toBottomOf="@id/pork" />
+
+    <TextView
+        android:id="@+id/fishSeafood"
+        android:layout_width="76dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/fish"
+        android:textAlignment="textEnd"
+        android:textColor="@color/darkblue"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/optionBacking"
+        app:layout_constraintTop_toBottomOf="@id/chicken" />
+
+    <Spinner
+        android:id="@+id/beefSpinner"
+        android:layout_width="128dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="40dp"
+        android:textColor="@color/lightblack"
+        android:background="@drawable/spinner_border"
+        app:layout_constraintEnd_toEndOf="@+id/optionBacking"
+        app:layout_constraintStart_toEndOf="@id/beef"
+        app:layout_constraintTop_toTopOf="@+id/optionBacking" />
+
+    <Spinner
+        android:id="@+id/porkSpinner"
+        android:layout_width="128dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="40dp"
+        android:textColor="@color/lightblack"
+        android:background="@drawable/spinner_border"
+        app:layout_constraintEnd_toEndOf="@+id/optionBacking"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/pork"
+        app:layout_constraintTop_toBottomOf="@+id/beefSpinner" />
+
+    <Spinner
+        android:id="@+id/chickenSpinner"
+        android:layout_width="128dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="41dp"
+        android:textColor="@color/lightblack"
+        android:background="@drawable/spinner_border"
+        app:layout_constraintEnd_toEndOf="@+id/optionBacking"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/chicken"
+        app:layout_constraintTop_toBottomOf="@+id/porkSpinner" />
+
+    <Spinner
+        android:id="@+id/fishSpinner"
+        android:layout_width="128dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginTop="31dp"
+        android:textColor="@color/lightblack"
+        android:background="@drawable/spinner_border"
+        app:layout_constraintBottom_toTopOf="@+id/noneSelected"
+        app:layout_constraintEnd_toEndOf="@+id/optionBacking"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/fishSeafood"
+        app:layout_constraintTop_toBottomOf="@+id/chickenSpinner"
+        app:layout_constraintVertical_bias="0.825" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

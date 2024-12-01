@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LocationFragment">
+
+    <View
+        android:id="@+id/background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/skyblue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/optionBacking"
+        android:layout_width="290dp"
+        android:layout_height="376dp"
+        app:layout_constraintEnd_toEndOf="@+id/background"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toBottomOf="@+id/questionBacking"
+        app:srcCompat="@drawable/option_backing" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="212dp"
+        android:layout_height="78dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/background"
+        app:srcCompat="@drawable/planetze_logo" />
+
+    <ImageView
+        android:id="@+id/questionBacking"
+        android:layout_width="353dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="77dp"
+        app:layout_constraintEnd_toEndOf="@+id/background"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:srcCompat="@drawable/question_backing" />
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/aqua"
+        android:text="@string/next"
+        android:textColor="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toBottomOf="@+id/optionBacking" />
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="318dp"
+        android:layout_height="64dp"
+        android:textSize="26sp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text="@string/ask_location"
+        android:textColor="@color/aqua"
+        app:layout_constraintBottom_toBottomOf="@+id/questionBacking"
+        app:layout_constraintEnd_toEndOf="@+id/questionBacking"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="@+id/questionBacking"
+        app:layout_constraintTop_toTopOf="@+id/questionBacking"
+        app:layout_constraintVertical_bias="0.446" />
+
+    <TextView
+        android:id="@+id/noneSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="102dp"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/none_selected"
+        android:textColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="@+id/optionBacking"
+        app:layout_constraintEnd_toEndOf="@+id/optionBacking"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="@+id/optionBacking"
+        app:layout_constraintTop_toBottomOf="@+id/locationSpinner"
+        app:layout_constraintVertical_bias="1.0"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/locationPrompt"
+        android:layout_width="150dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="70dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/select_location"
+        android:textAlignment="center"
+        android:textColor="@color/darkblue"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/optionBacking"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/optionBacking"
+        app:layout_constraintTop_toTopOf="@+id/optionBacking" />
+
+    <Spinner
+        android:id="@+id/locationSpinner"
+        android:layout_width="198dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-medium"
+        android:background="@drawable/spinner_border"
+        app:layout_constraintEnd_toEndOf="@+id/optionBacking"
+        app:layout_constraintStart_toStartOf="@+id/optionBacking"
+        app:layout_constraintTop_toBottomOf="@+id/locationPrompt" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
