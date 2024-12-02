@@ -25,20 +25,11 @@ public class Q11Fragment extends Fragment {
     private RadioGroup radioGroup;
     RadioButton selectedRadioButton;
     private TextView errorMessage;
-    private String uid;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_q11, container, false);
-
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser == null) {
-            Log.e("Q11Fragment", "Error: User not authenticated.");
-            return view;
-        }
-
-        uid = currentUser.getUid();
 
         radioGroup = view.findViewById(R.id.options);
         errorMessage = view.findViewById(R.id.noneSelected);
@@ -55,6 +46,7 @@ public class Q11Fragment extends Fragment {
                 selectedRadioButton = (RadioButton)view.findViewById(radioGroup.getCheckedRadioButtonId());
                 String selectedText = selectedRadioButton.getText().toString();
 
+                // if other is selected for type of house, answer is saved as a townhouse
                 switch (selectedText) {
                     case "Detached house":
                         saveAnswerToFirebase("q11", "detached_house");

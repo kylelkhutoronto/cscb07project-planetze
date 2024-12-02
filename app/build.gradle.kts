@@ -14,7 +14,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        multiDexEnabled = true
+        multiDexEnabled = true // To enable MultiDex and use its advantage of using 65,536 plus method references
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -53,9 +53,10 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics") // Firebase Analytics
 
     // For Card view
-    implementation("androidx.cardview:cardview:1.0.0")
+    implementation("androidx.cardview:cardview:1.0.0") // Card View Type Layout in XML
 
+    // For PieChart in Results Display
     implementation("com.github.AnyChart:AnyChart-Android:1.1.2") // GitHub AnyChart Repository
-    implementation("androidx.multidex:multidex:2.0.1")
+    implementation("androidx.multidex:multidex:2.0.1") // For AnyChart Usage for use of 65,536 plus method references
 
 }

@@ -25,20 +25,11 @@ public class Q8Fragment extends Fragment {
     private RadioGroup radioGroup;
     RadioButton selectedRadioButton;
     private TextView errorMessage;
-    private String uid;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_q8, container, false);
-
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser == null) {
-            Log.e("Q8Fragment", "Error: User not authenticated.");
-            return view;
-        }
-
-        uid = currentUser.getUid();
 
         radioGroup = view.findViewById(R.id.options);
         errorMessage = view.findViewById(R.id.noneSelected);
@@ -61,6 +52,7 @@ public class Q8Fragment extends Fragment {
                     loadFragment(new Q9Fragment());
                 }
                 else {
+                    // skips to q10 and survey answers for skipped questions are automatically saved where they will reach return 0
                     saveAnswerToFirebase("q9Beef","Never");
                     saveAnswerToFirebase("q9Pork","Never");
                     saveAnswerToFirebase("q9Chicken","Never");

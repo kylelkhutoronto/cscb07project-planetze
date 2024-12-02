@@ -22,20 +22,11 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Q9Fragment extends Fragment {
     private TextView errorMessage;
-    private String uid;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_q9, container, false);
-
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser == null) {
-            Log.e("Q9Fragment", "Error: User not authenticated.");
-            return view;
-        }
-
-        uid = currentUser.getUid();
 
         errorMessage = view.findViewById(R.id.noneSelected);
         Button nextButton = view.findViewById(R.id.nextButton);

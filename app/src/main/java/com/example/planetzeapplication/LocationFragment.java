@@ -31,25 +31,23 @@ import java.util.List;
 public class LocationFragment extends Fragment {
 
     private TextView errorMessage;
-    private String uid;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_location, container, false);
 
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser == null) {
-            Log.e("LocationFragment", "Error: User not authenticated.");
-            return view;
-        }
-
-        uid = currentUser.getUid();
+//        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+//        if (currentUser == null) {
+//            Log.e("LocationFragment", "Error: User not authenticated.");
+//            return view;
+//        }
 
         errorMessage = view.findViewById(R.id.noneSelected);
         Button nextButton = view.findViewById(R.id.nextButton);
         List<String> countryList = new ArrayList<>();
 
+        // reads the .txt file with all the countries
         try (InputStream inputStream = getResources().openRawResource(R.raw.countries);
 
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {

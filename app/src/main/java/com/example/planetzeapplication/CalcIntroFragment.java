@@ -22,12 +22,7 @@ public class CalcIntroFragment extends Fragment {
 
         Button startButton = view.findViewById(R.id.startButton);
 
-        startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadFragment(new LocationFragment());
-            }
-        });
+        startButton.setOnClickListener(v -> loadFragment(new LocationFragment()));
 
         return view;
     }

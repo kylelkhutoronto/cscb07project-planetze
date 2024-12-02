@@ -24,20 +24,11 @@ public class Q1Fragment extends Fragment {
 
     private RadioGroup radioGroup;
     private TextView errorMessage;
-    private String uid;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_q1, container, false);
-
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser == null) {
-            Log.e("Q1Fragment", "Error: User not authenticated.");
-            return view;
-        }
-
-        uid = currentUser.getUid();
 
         radioGroup = view.findViewById(R.id.options);
         errorMessage = view.findViewById(R.id.noneSelected);
@@ -57,6 +48,7 @@ public class Q1Fragment extends Fragment {
                     saveAnswerToFirebase("q1","Yes");
                     loadFragment(new Q2Fragment());
                 } else if (selectedId == R.id.option2) {
+                    // skips to q4 and survey answers for skipped questions are automatically saved where they will reach return 0
                     saveAnswerToFirebase("q1","No");
                     saveAnswerToFirebase("q2","N/A");
                     saveAnswerToFirebase("q3","N/A");

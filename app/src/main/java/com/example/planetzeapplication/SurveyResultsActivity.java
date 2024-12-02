@@ -1,8 +1,12 @@
 package com.example.planetzeapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +34,7 @@ public class SurveyResultsActivity extends AppCompatActivity {
 
     private FirebaseUser currentUser;
     private FirebaseDatabase db;
+    private String uid;
     private String location, q2, q3, q4, q5, q6, q7, q8, q9Beef, q9Pork, q9Chicken, q9Fish,
             q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21;
     private double locationAverage, compareUserLocation, compareUserGlobal;
@@ -46,24 +51,22 @@ public class SurveyResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_results);
 
-        Log.d("FindingView", "Let's start finding the view ids...");
-
         totalText = findViewById(R.id.total_emissions);
         pieChart = findViewById(R.id.pieChart);
         comparisonTitle = findViewById(R.id.comparison);
         comparisonText = findViewById(R.id.comparisonText);
+        Button nextButton = findViewById(R.id.nextButton);
 
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
         if (currentUser == null) {
-            Log.e("SurveyResultsActivity2", "User not authenticated");
+            Log.e("SurveyResultsActivity", "User not authenticated");
             return;
         }
 
-        String uid = currentUser.getUid();
+        uid = currentUser.getUid();
 
-        db = FirebaseDatabase
-                .getInstance();
+        db = FirebaseDatabase.getInstance();
 
         DatabaseReference ref1 = db.getReference("Users")
                 .child(uid).child("questionnaire").child("answers");
@@ -109,16 +112,25 @@ public class SurveyResultsActivity extends AppCompatActivity {
                 Log.e("SurveyResultsActivity2", "Error reading survey answers", task.getException());
             }
         });
+
+        nextButton.setOnClickListener(v -> {
+            Intent intent = new Intent(SurveyResultsActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void calculateAndSaveEmissions() {
 
-        transportEmissions = TransportationCalculation.transportEmissionsKG(q2, q3, q4, q5, q6, q7) / 1000.0;
-        foodEmissions = FoodCalculation.foodEmissionsKG(q8, q9Beef, q9Pork, q9Chicken, q9Fish, q10) / 1000.0;
-        housingEmissions = HousingCalculation.housingEmissionsKG(this, q11, q13, q15, q12, q14, q16, q17) / 1000.0;
-        consumptionEmissions = ConsumptionCalculation.consumptionEmissionsKG(q18, q19, q20, q21) / 1000.0;
+        transportEmissions = TransportationCalculation.transportEmissionsKG(q2, q3, q4, q5, q6, q7);
+        foodEmissions = FoodCalculation.foodEmissionsKG(q8, q9Beef, q9Pork, q9Chicken, q9Fish, q10);
+        housingEmissions = HousingCalculation.housingEmissionsKG(this, q11, q13, q15, q12, q14, q16, q17);
+        consumptionEmissions = ConsumptionCalculation.consumptionEmissionsKG(q18, q19, q20, q21);
+
+        convertKGToMetricTons();
+
         totalEmissions = transportEmissions + foodEmissions + housingEmissions + consumptionEmissions;
 
+        // Assuming global averages are in metric tons
         try {
             InputStream fis = getResources().openRawResource(R.raw.globalaverages);
             BufferedReader b = new BufferedReader(new InputStreamReader(fis));
@@ -139,8 +151,14 @@ public class SurveyResultsActivity extends AppCompatActivity {
             }
             b.close();
             fis.close();
+
+            if (locationAverage == 0) {
+                locationAverage = 4.65970428;
+                Log.w("location average", "Location not found.");
+            }
         } catch (Exception ex) {
-            Log.d("location average", "Error reading file", ex);
+            Log.e("location average", "Error reading file", ex);
+            locationAverage = 4.65970428;
         }
 
         globalTarget = 2;
@@ -153,6 +171,10 @@ public class SurveyResultsActivity extends AppCompatActivity {
 
         aboveBelowGlobal = compareUserGlobal > 0 ? "above" : "below";
 
+        compareUserLocation = Math.abs(compareUserLocation);
+
+        compareUserGlobal = Math.abs(compareUserGlobal);
+
         Log.d("Calculations", "Calculations are done...");
 
         saveAnswerToFirebase("totalEmissions", totalEmissions);
@@ -163,21 +185,23 @@ public class SurveyResultsActivity extends AppCompatActivity {
         saveAnswerToFirebase("locationAverage", locationAverage);
         saveAnswerToFirebase("globalTargetEmission", globalTarget);
 
-        Log.d("Calculations", "Results have been uploaded to Firebase Database");
+        Log.i("Calculations", "Results have been uploaded to Firebase Database");
 
     }
 
     private void saveAnswerToFirebase(String emissionCategory, double result) {
 
-        if (currentUser != null) {
-            String uid = currentUser.getUid();
-            DatabaseReference userRef = db.getReference("Users").child(uid)
-                    .child("questionnaire")
-                    .child("results");
-            userRef.child(emissionCategory).setValue(result);
-        } else {
-            Log.e("SurveyResultsActivity2", "User is not authenticated.");
-        }
+        DatabaseReference userRef = db.getReference("Users").child(uid)
+                .child("questionnaire")
+                .child("results");
+        userRef.child(emissionCategory).setValue(result);
+    }
+
+    private void convertKGToMetricTons () {
+        transportEmissions = transportEmissions / 1000.0;
+        foodEmissions = foodEmissions / 1000.0;
+        housingEmissions = housingEmissions/ 1000.0;
+        consumptionEmissions = consumptionEmissions / 1000.0;
     }
 
     private void setData() {

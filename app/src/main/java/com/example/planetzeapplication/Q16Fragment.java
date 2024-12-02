@@ -25,20 +25,11 @@ public class Q16Fragment extends Fragment {
     private RadioGroup radioGroup;
     RadioButton selectedRadioButton;
     private TextView errorMessage;
-    private String uid;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_q16, container, false);
-
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser == null) {
-            Log.e("Q16Fragment", "Error: User not authenticated.");
-            return view;
-        }
-
-        uid = currentUser.getUid();
 
         radioGroup = view.findViewById(R.id.options);
         errorMessage = view.findViewById(R.id.noneSelected);
@@ -68,8 +59,8 @@ public class Q16Fragment extends Fragment {
                     case "Propane":
                         saveAnswerToFirebase("q16", "propane");
                         break;
-                    case "Wood":
-                        saveAnswerToFirebase("q16", "wood");
+                    case "Solar":
+                        saveAnswerToFirebase("q16", "solar");
                         break;
                 }
 

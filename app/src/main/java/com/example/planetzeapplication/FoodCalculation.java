@@ -2,6 +2,7 @@ package com.example.planetzeapplication;
 
 public class FoodCalculation {
 
+    // Returns emissions based on their diet (meat-based isn't included as it is calculated in the next question)
     public static int q8Calculation(String selection) {
         if ("Vegetarian".equals(selection)) {
             return 1000;
@@ -13,6 +14,7 @@ public class FoodCalculation {
         return 0;
     }
 
+    // Returns emissions based on their beef consumption
     public static int q9BeefCalculation(String beefSelection) {
         if ("Daily".equals(beefSelection)) {
             return 2500;
@@ -25,6 +27,8 @@ public class FoodCalculation {
         }
         return 0;
     }
+
+    // Returns emissions based on their pork consumption
     public static int q9PorkCalculation(String PorkSelection) {
         if ("Daily".equals(PorkSelection)) {
             return 1450;
@@ -38,6 +42,7 @@ public class FoodCalculation {
         return 0;
     }
 
+    // Returns emissions based on their chicken consumption
     public static int q9ChickenCalculation(String ChickenSelection) {
         if ("Daily".equals(ChickenSelection)) {
             return 950;
@@ -51,6 +56,7 @@ public class FoodCalculation {
         return 0;
     }
 
+    // Returns emissions based on their fish/seafood consumption
     public static int q9FishCalculation(String FishSelection) {
         if ("Daily".equals(FishSelection)) {
             return 800;
@@ -64,6 +70,7 @@ public class FoodCalculation {
         return 0;
     }
 
+    // returns emissions based on their food waste and throwing away leftovers
     public static double q10Calculation(String selection) {
         if ("Never".equals(selection)) {
             return 0.0;
@@ -77,6 +84,7 @@ public class FoodCalculation {
         return 0;
     }
 
+    // Calls all food calculation methods and returns the sum in kg CO2e (so total food emissions)
     public static double foodEmissionsKG(String dietType, String beef, String pork,
                                               String chicken, String fish, String leftovers) {
 

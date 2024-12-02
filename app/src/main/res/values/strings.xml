@@ -52,12 +52,12 @@
     <string name="q2.5">I don\'t know</string>
 
     <string name="q3">How many kilometers/miles do you drive per year?</string>
-    <string name="q3.1">Up to 5,000km</string>
-    <string name="q3.2">5,000-10,000km</string>
-    <string name="q3.3">10,000-15,000km</string>
-    <string name="q3.4">15,000-20,000km</string>
-    <string name="q3.5">20,000-25,000km</string>
-    <string name="q3.6">More than 25,000km</string>
+    <string name="q3.1">Up to 5,000 km</string>
+    <string name="q3.2">5,000-10,000 km</string>
+    <string name="q3.3">10,000-15,000 km</string>
+    <string name="q3.4">15,000-20,000 km</string>
+    <string name="q3.5">20,000-25,000 km</string>
+    <string name="q3.6">More than 25,000 km</string>
 
     <string name="q4">How often do you use public transportation (bus, train, subway)?</string>
     <string name="q4.1">Never</string>
@@ -78,7 +78,7 @@
     <string name="q6q7.2">1-2 flights</string>
     <string name="q6q7.3">3-5 flights</string>
     <string name="q6q7.4">6-10 flights</string>
-    <string name="q6q7.5">More than 10 hours</string>
+    <string name="q6q7.5">More than 10 flights</string>
 
     <string name="q8">What best describes your diet?</string>
     <string name="q8.1">Vegetarian</string>

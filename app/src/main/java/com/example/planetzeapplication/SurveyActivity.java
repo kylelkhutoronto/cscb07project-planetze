@@ -45,13 +45,13 @@ public class SurveyActivity extends AppCompatActivity {
                 Boolean completed = snapshot.child("doneSurvey").getValue(Boolean.class);
 
                 if (completed != null && completed) {
-                    Log.d("MainActivity", "Survey completed. To the main page.");
+                    Log.d("SurveyActivity", "Survey completed. To the main page.");
 
                     Intent intent = new Intent(SurveyActivity.this, MainActivity.class);
                     startActivity(intent);
 
                 } else {
-                    Log.d("MainActivity", "Survey not completed. Start survey.");
+                    Log.d("SurveyActivity", "Survey not completed. Start survey.");
 
                     if (savedInstanceState == null) {
                         loadFragment(new CalcIntroFragment());
