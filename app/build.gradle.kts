@@ -14,7 +14,6 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -50,12 +49,4 @@ dependencies {
     // Firebase SDKs
     implementation("com.google.firebase:firebase-auth")       // Firebase Authentication
     implementation("com.google.firebase:firebase-database")   // Firebase Realtime Database
-    implementation("com.google.firebase:firebase-analytics") // Firebase Analytics
-
-    // For Card view
-    implementation("androidx.cardview:cardview:1.0.0")
-
-    implementation("com.github.AnyChart:AnyChart-Android:1.1.2") // GitHub AnyChart Repository
-    implementation("androidx.multidex:multidex:2.0.1")
-
 }

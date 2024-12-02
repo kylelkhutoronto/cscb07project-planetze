@@ -4,16 +4,4 @@
     <color name="white">#FFFFFFFF</color>
     <color name="screenBackground">#2196F3</color>
     <color name="buttonBackground">#BBDEFB</color>
-
-    <color name="grey">#d8dbe2</color>
-    <color name="skyblue">#a9bcd0</color>
-    <color name="aqua">#009999</color>
-    <color name="green">#228B22</color>
-    <color name="lightgreen">#6DB474</color>
-    <color name="darkblue">#373f51</color>
-    <color name="lightblack">#1b1b1e</color>
-    <color name="red">#FF0000</color>
-    <color name="navy">#024265</color>
-    <color name="pink">#F2BDCD</color>
-    <color name="rustyorange">#C75B4B</color>
 </resources>
