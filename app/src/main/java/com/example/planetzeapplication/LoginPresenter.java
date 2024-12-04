@@ -37,7 +37,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter{
         model.userLogin(email, password, new LoginContract.LoginModel() {
             @Override
             public void onSuccess(FirebaseUser user) {
-                if (user != null && user.isEmailVerified()) {
+                if (user.isEmailVerified()) {
                     view.showMessage("Login Successful!");
                     view.navigateToMainActivity();
                 } else {
