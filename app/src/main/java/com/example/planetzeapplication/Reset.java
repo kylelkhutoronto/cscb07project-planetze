@@ -44,18 +44,22 @@ public class Reset extends AppCompatActivity {
         });
     }
 
+    // Method to handle password reset
     private void passwordReset() {
         String email = Objects.requireNonNull(editTextEmail.getText()).toString().trim();
 
+        // Check if email is empty
         if (TextUtils.isEmpty(email)) {
             editTextEmail.setError("Email Address cannot be empty");
             return;
         }
+        // Check if email is valid
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editTextEmail.setError("Invalid Email Address");
             return;
         }
 
+        // Send password reset email
         mAuth.sendPasswordResetEmail(email)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {

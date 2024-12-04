@@ -36,6 +36,7 @@ public class Register extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
+        // Initialize edit text, text views and buttons
         editTextFullName = findViewById(R.id.full_name);
         editTextEmail = findViewById(R.id.email_address1);
         editTextPassword = findViewById(R.id.password1);
@@ -43,8 +44,10 @@ public class Register extends AppCompatActivity {
         Button registerButton = findViewById(R.id.register_btn2);
         TextView loginNowTextView = findViewById(R.id.log_in_now);
 
+        // Set click listener for register button
         registerButton.setOnClickListener(v -> userRegister());
 
+        // Set click listener for login now text view
         loginNowTextView.setOnClickListener(v -> {
             Intent intent = new Intent(Register.this, LoginView.class);
             startActivity(intent);
@@ -52,6 +55,7 @@ public class Register extends AppCompatActivity {
         });
     }
 
+    // Method to handle user registration
     private void userRegister() {
         String fullName = Objects.requireNonNull(editTextFullName.getText()).toString().trim();
         String email = Objects.requireNonNull(editTextEmail.getText()).toString().trim();
@@ -60,35 +64,43 @@ public class Register extends AppCompatActivity {
                 .toString()
                 .trim();
 
+        // Check if Full name is empty
         if (TextUtils.isEmpty(fullName)) {
             editTextFullName.setError("Full Name cannot be empty");
             return;
         }
+        // Check if email is empty
         if (TextUtils.isEmpty(email)) {
             editTextEmail.setError("Email Address cannot be empty");
             return;
         }
+        // Check if email is valid
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editTextEmail.setError("Invalid Email Address");
             return;
         }
+        // Check if password is empty
         if (TextUtils.isEmpty(password)) {
             editTextPassword.setError("Password cannot be empty");
             return;
         }
+        // Check if password is at least 6 characters long
         if (password.length() < 6) {
             editTextPassword.setError("Password must be at least 6 characters long");
             return;
         }
+        // Check if confirm password is empty
         if (TextUtils.isEmpty(confirmPassword)) {
             editTextConfirmPassword.setError("Confirm Password cannot be empty");
             return;
         }
+        // Check if password and confirm password match
         if (!password.equals(confirmPassword)) {
             editTextConfirmPassword.setError("Password does not match");
             return;
         }
 
+        // Create user with email and password
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -103,14 +115,17 @@ public class Register extends AppCompatActivity {
                                                     "Please verify your email!",
                                                     Toast.LENGTH_SHORT).show();
 
+                                            // Save user data to Firebase Realtime Database
                                             saveUserData(user.getUid(), fullName, email);
 
+                                            // Navigate to login view
                                             Intent intent = new Intent(Register.this,
                                                     LoginView.class);
                                             startActivity(intent);
                                             finish();
 
                                         } else {
+                                            // Handle email verification sending failure
                                             Toast.makeText(Register.this,
                                                     "Failed to send verification email!",
                                                     Toast.LENGTH_SHORT).show();
@@ -118,6 +133,7 @@ public class Register extends AppCompatActivity {
                                     });
                         }
                     } else {
+                        // Handle if the user already exists
                         Toast.makeText(Register.this,
                                 "This email is already registered", Toast.LENGTH_SHORT).show();
                     }
@@ -125,6 +141,7 @@ public class Register extends AppCompatActivity {
 
     }
 
+    // Method to save user data to Firebase Realtime Database
     private void saveUserData(String userId, String fullName, String email) {
         User user = new User(fullName, email);
 
