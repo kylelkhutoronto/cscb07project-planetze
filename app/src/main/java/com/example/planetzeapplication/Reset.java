@@ -3,6 +3,7 @@ package com.example.planetzeapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -11,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
@@ -47,20 +47,22 @@ public class Reset extends AppCompatActivity {
             editTextEmail.setError("Email Address cannot be empty");
             return;
         }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editTextEmail.setError("Invalid Email Address");
+            return;
+        }
 
         mAuth.sendPasswordResetEmail(email)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        if (user != null && user.isEmailVerified()) {
-                            Toast.makeText(Reset.this, "Password reset successfully!",
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(Reset.this, "Please verify your email!",
-                                    Toast.LENGTH_SHORT).show();
-                        }
+                        Toast.makeText(Reset.this, "Password reset email sent!",
+                                Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Reset.this, LoginView.class);
+                        startActivity(intent);
+                        finish();
                     } else {
-                        Toast.makeText(Reset.this, "Invalid email!",
+                        Toast.makeText(Reset.this,
+                                "Failed to send password reset email!",
                                 Toast.LENGTH_SHORT).show();
                     }
                 });

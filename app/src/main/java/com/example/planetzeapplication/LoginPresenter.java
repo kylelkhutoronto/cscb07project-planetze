@@ -1,12 +1,10 @@
 package com.example.planetzeapplication;
 
-import android.text.TextUtils;
-
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginPresenter implements LoginContract.LoginPresenter{
-    private final LoginContract.LoginView view;
-    private final LoginModel model;
+    LoginContract.LoginView view;
+    LoginModel model;
 
     public LoginPresenter(LoginContract.LoginView view, LoginModel model) {
         this.view = view;
@@ -15,11 +13,16 @@ public class LoginPresenter implements LoginContract.LoginPresenter{
 
     @Override
     public void onLoginClicked(String email, String password) {
-        if (TextUtils.isEmpty(email)) {
+        if (email.isEmpty()) {
             view.showEmailError("Email Address cannot be empty");
             return;
         }
-        if (TextUtils.isEmpty(password)) {
+        String regex = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
+        if (!(email.matches(regex))) {
+            view.showEmailError("Invalid Email Address");
+            return;
+        }
+        if (password.isEmpty()) {
             view.showPasswordError("Password cannot be empty");
             return;
         }

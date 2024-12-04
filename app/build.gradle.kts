@@ -59,4 +59,12 @@ dependencies {
     implementation("com.github.AnyChart:AnyChart-Android:1.1.2") // GitHub AnyChart Repository
     implementation("androidx.multidex:multidex:2.0.1") // For AnyChart Usage for use of 65,536 plus method references
 
+    testImplementation("junit:junit:4.+")
+    testImplementation("org.mockito:mockito-inline:3.12.4")
+
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    testImplementation("net.bytebuddy:byte-buddy:1.14.8")
+    testImplementation("net.bytebuddy:byte-buddy-agent:1.14.8")
 }
