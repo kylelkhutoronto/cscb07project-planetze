@@ -14,4 +14,11 @@
     <string name="reset_your_password">Reset your password</string>
     <string name="reset">RESET</string>
     <string name="back">BACK</string>
+    <string name="loglist">List of Activities</string>
+    <string name="add_activity">Add Activity</string>
+    <string name="mod_activity">Modify Activity</string>
+    <string name="del_activity">Delete Activity</string>
+    <string name="magnitude">Distance in KM / Item Amount</string>
+    <string name="activity_name">Activity Name</string>
+    <string name="choose_date">Select a day to view log</string>
 </resources>

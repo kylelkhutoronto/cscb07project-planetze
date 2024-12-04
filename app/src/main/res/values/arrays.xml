@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Categories array -->
+    <string-array name="categories">
+        <item>Category 1</item>
+        <item>Category 2</item>
+        <item>Category 3</item>
+    </string-array>
+
+    <!-- Subtypes array -->
+    <string-array name="subtypes">
+        <item>Subtype 1</item>
+        <item>Subtype 2</item>
+        <item>Subtype 3</item>
+    </string-array>
+</resources>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".DayTrackerView">
+
+    <TextView
+        android:text="@string/loglist"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- List of Days -->
+    <ListView
+        android:id="@+id/daysListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp" />
+
+    <!-- Buttons to add, modify, and delete activities -->
+    <Button
+        android:id="@+id/addActivityButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_activity" />
+
+    <Button
+        android:id="@+id/modifyActivityButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/mod_activity" />
+
+    <Button
+        android:id="@+id/deleteActivityButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/del_activity" />
+
+    <include
+        android:id="@+id/activityForm"
+        layout="@layout/add_activity"
+        android:visibility="gone" />
+
+    <!-- Log of the selected day -->
+    <TextView
+        android:id="@+id/logTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_date"
+        android:textSize="16sp"
+        android:padding="16dp" />
+
+</LinearLayout>
