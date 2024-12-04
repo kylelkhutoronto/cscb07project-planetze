@@ -49,4 +49,13 @@ dependencies {
     // Firebase SDKs
     implementation("com.google.firebase:firebase-auth")       // Firebase Authentication
     implementation("com.google.firebase:firebase-database")   // Firebase Realtime Database
+
+    testImplementation("junit:junit:4.+")
+    testImplementation("org.mockito:mockito-inline:3.12.4")
+
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    testImplementation("net.bytebuddy:byte-buddy:1.14.8")
+    testImplementation("net.bytebuddy:byte-buddy-agent:1.14.8")
 }

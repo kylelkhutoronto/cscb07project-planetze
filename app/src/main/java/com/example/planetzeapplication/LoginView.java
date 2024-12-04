@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,7 +62,7 @@ public class LoginView extends AppCompatActivity implements LoginContract.LoginV
 
     @Override
     public void showMessage(String message) {
-        // Display a toast message to the user
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

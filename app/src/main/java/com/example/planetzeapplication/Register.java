@@ -3,6 +3,7 @@ package com.example.planetzeapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,8 +68,16 @@ public class Register extends AppCompatActivity {
             editTextEmail.setError("Email Address cannot be empty");
             return;
         }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editTextEmail.setError("Invalid Email Address");
+            return;
+        }
         if (TextUtils.isEmpty(password)) {
             editTextPassword.setError("Password cannot be empty");
+            return;
+        }
+        if (password.length() < 6) {
+            editTextPassword.setError("Password must be at least 6 characters long");
             return;
         }
         if (TextUtils.isEmpty(confirmPassword)) {
@@ -108,6 +117,9 @@ public class Register extends AppCompatActivity {
                                         }
                                     });
                         }
+                    } else {
+                        Toast.makeText(Register.this,
+                                "This email is already registered", Toast.LENGTH_SHORT).show();
                     }
                 });
 
