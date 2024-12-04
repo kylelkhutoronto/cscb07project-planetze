@@ -25,14 +25,18 @@ public class Reset extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset);
 
+        // Initialize Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
 
+        // Initialize edit text and buttons
         editTextEmail = findViewById(R.id.email_address3);
         Button resetButton = findViewById(R.id.reset_btn);
         Button backButton = findViewById(R.id.back_btn);
 
+        // Set click listener for reset button
         resetButton.setOnClickListener(v -> passwordReset());
 
+        // Set click listener for back button
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(Reset.this, LoginView.class);
             startActivity(intent);

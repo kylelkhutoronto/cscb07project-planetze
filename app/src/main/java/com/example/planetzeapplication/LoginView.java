@@ -67,7 +67,7 @@ public class LoginView extends AppCompatActivity implements LoginContract.LoginV
 
     @Override
     public void navigateToMainActivity() {
-        Intent intent = new Intent(LoginView.this, MainActivity.class);
+        Intent intent = new Intent(LoginView.this, SurveyActivity.class);
         startActivity(intent);
         finish();
     }
