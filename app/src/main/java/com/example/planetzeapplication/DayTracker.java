@@ -3,9 +3,9 @@ package com.example.planetzeapplication;
 import java.util.HashMap;
 
 public class DayTracker {
-    public String date;
-    public HashMap<String, Long> log;
-    public long totEmission;
+    Localdate date;
+    HashMap<Long, Long> log;
+    long totEmission;
 
 
     public DayTracker() {
@@ -14,7 +14,7 @@ public class DayTracker {
     }
 
 
-    public DayTracker(String date, HashMap<String, Long> log) {
+    public DayTracker(String date, HashMap<Long, Long> log) {
         this.date = date;
         this.log = log;
         this.totEmission = calculateTotalEmissions();
