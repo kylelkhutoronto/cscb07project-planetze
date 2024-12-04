@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Planetze Application</string>
+    <string name="welcome_to_planetze">Welcome to Planetze</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_up_register">Sign Up/Register</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="full_name_first_last">Full Name(First Last)</string>
+    <string name="login_now">Login Now</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="reset_your_password">Reset your password</string>
+    <string name="reset">RESET</string>
+    <string name="back">BACK</string>
+    <string name="habit_tracker">Habit Tracker</string>
+    <string name="sugessted_habits">Suggested Habits</string>
+    <string name="suggested_habits">Suggested Habits</string>
+    <string name="search_habits">Search for Habits</string>
+    <string name="search_habit">Let\'s make real solutions for a sustainable world</string>
+    <string name="tracked_habits">Tracked Habits</string>
+    <string name="dayslog">Days Logged</string>
+    <string name="activityLog">Activities\n</string>
+    <string name="habitTracker">Habit Tracker\n</string>
+    <string name="daysLog">Days</string>
+    <string name="habits_tracker">Habit Suggestions</string>
+    <string name="habits_suggestion">Habit Suggestions</string>
+    <string name="tracked_habit">Tracked Habits</string>
+    <string name="day">Days</string>
+    <string name="habit">Habits</string>
+    <string name="activity_y">Activity Y\n</string>
+    <string name="activity_x">activity X\n</string>
+    <string name="replace">Replace\n</string>
+    <string name="searching">Search for Habits\n</string>
+</resources>
