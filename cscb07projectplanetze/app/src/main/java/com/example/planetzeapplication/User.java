@@ -1,8 +1,12 @@
 package com.example.planetzeapplication;
-
+import java.util.*;
 public class User {
     private String fullName;
     private String email;
+
+    ArrayList<DayTracker> days;
+    double totEmission;
+
 
     public User() {
     }
