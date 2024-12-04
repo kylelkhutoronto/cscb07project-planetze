@@ -10,6 +10,7 @@ public class User {
     public long userid;
     public HashMap<String, DayTracker> days; // String key for date (e.g., "2024-12-03")
     public double totemission;
+    private Boolean donesurvey;
 
 
     public User() {
@@ -23,7 +24,20 @@ public class User {
         this.email = email;
         this.totemission = totemission;
         this.days = new HashMap<>();
+        this.doneSurvey = false;
     }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+    public Boolean getDoneSurvey() {
+        return doneSurvey;
+    }
+    
 
     // Method to Calculate Total Emissions Over Time
     public Map<Long, Long> getEmissionsOverTime(long start_date, long end_date) {
@@ -66,4 +80,5 @@ public class User {
         }
         return emissionsByCategory;
     }
+
 }
