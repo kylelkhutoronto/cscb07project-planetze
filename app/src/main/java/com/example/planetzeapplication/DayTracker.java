@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class DayTracker {
     Localdate date;
     HashMap<Long, Long> log;
-    long totEmission;
+    double totEmission;
 
 
     public DayTracker() {
