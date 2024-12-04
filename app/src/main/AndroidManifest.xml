@@ -33,6 +33,12 @@
         <activity
             android:name=".Reset"
             android:exported="false" />
+        <activity
+            android:name=".SurveyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SurveyResultsActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
