@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.planetzeapplication"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -42,9 +42,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation(libs.mpandroidchart)
 
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
+
 
     // Firebase SDKs
     implementation("com.google.firebase:firebase-auth")       // Firebase Authentication

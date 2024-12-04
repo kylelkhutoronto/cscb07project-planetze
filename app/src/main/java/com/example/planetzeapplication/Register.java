@@ -114,7 +114,7 @@ public class Register extends AppCompatActivity {
     }
 
     private void saveUserData(String userId, String fullName, String email) {
-        User user = new User(fullName, email);
+        User user = new User(fullName, email,0);
 
         databaseReference.child(userId).setValue(user)
                 .addOnCompleteListener(task -> {
