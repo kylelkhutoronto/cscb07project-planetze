@@ -30,7 +30,6 @@
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1dp" />
 
-    <!-- Buttons to add, modify, and delete activities -->
     <Button
         android:id="@+id/addActivityButton"
         android:layout_width="match_parent"
@@ -54,13 +53,28 @@
         layout="@layout/add_activity"
         android:visibility="gone" />
 
-    <!-- Log of the selected day -->
-    <TextView
-        android:id="@+id/logTextView"
+    <include
+        android:id="@+id/modifyActivityForm"
+        layout="@layout/mod_activity"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/deleteActivityForm"
+        layout="@layout/del_activity"
+        android:visibility="gone" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/choose_date"
-        android:textSize="16sp"
-        android:padding="16dp" />
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/daysSpinner"
+            android:layout_width="match_parent"
+            android:text="@string/choose_date"
+            android:layout_height="60dp"
+            android:padding="10dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
 </LinearLayout>

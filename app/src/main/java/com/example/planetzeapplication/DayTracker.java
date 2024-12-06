@@ -2,71 +2,24 @@ package com.example.planetzeapplication;
 
 import java.util.*;
 import java.time.LocalDate;
-
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.auth.oauth2.GoogleCredentials;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
-import android.os.Bundle;
-import android.util.Log;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
+import com.google.firebase.database.*;
 
 public class DayTracker {
     HashMap<Long, Double> log;
     double dayEmission;
-    LocalDate date;
+    String date;
     static double tonConvert = 0.001102;
 
     public DayTracker() {
         this.log = new HashMap<>();
         this.dayEmission = 0.0;
-        this.date = LocalDate.now();
+        this.date = LocalDate.now().toString();
     }
 
-    public DayTracker(HashMap<Long, Double> log, double totalEmission, LocalDate date) {
+    public DayTracker(HashMap<Long, Double> log, double totalEmission, String date) {
         this.log = log;
         this.dayEmission = totalEmission;
         this.date = date;
-    }
-
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Activities");
-
-    FirebaseDatabase db = FirebaseDatabase.getInstance();
-    FirebaseAuth auth = FirebaseAuth.getInstance();
-    FirebaseUser currentUser = auth.getCurrentUser();
-    if (currentUser == null) {
-        Log.e("SurveyActivity", "Error: User not authenticated.");
-        finish();
-        return;
-    }
-    String uid = currentUser.getUid();
-    public void addData(String uid, String data) {
-        try {
-            // Get the current user reference
-            DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-            DatabaseReference userRef = database.child("users").child(uid);
-
-            // Get the current date as LocalDate
-            LocalDate currentDate = LocalDate.now();
-            String formattedDate = currentDate.toString(); // e.g., "2024-12-03"
-
-            // Add data to the structure: users -> user123 -> days -> 2024-12-03
-            DatabaseReference dayRef = userRef.child("days").child(formattedDate);
-            dayRef.setValue(data);
-
-            System.out.println("Data added to Firebase under user: " + uid + ", date: " + formattedDate);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void addActivity(String activityName, String category, String subtype, double magnitude) {
@@ -76,35 +29,20 @@ public class DayTracker {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-
         if (activity != null) {
-            double emission = computeEmission(activity);
-
-            // Reference to the Firebase database
-            DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-            DatabaseReference userRef = database.child("users").child(uid);
-
-            // Get the current date as LocalDate
-            LocalDate currentDate = LocalDate.now();
-            String formattedDate = currentDate.toString(); // e.g., "2024-12-03"
-            DatabaseReference dayRef = userRef.child("days").child(formattedDate);
-
-            // Get the current emissions log (if exists)
-            dayRef.child("log").child(String.valueOf(activity.getActivityId())).setValue(emission);
-
-            // Optionally, update daily emissions
-            dayRef.child("dailyEmission").get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    Double currentDailyEmission = task.getResult().getValue(Double.class);
-                    if (currentDailyEmission == null) {
-                        currentDailyEmission = 0.0;
-                    }
-                    dayRef.child("dailyEmission").setValue(currentDailyEmission + emission);
-                }
-            });
-
-            System.out.println("Activity added with emission " + emission + " for user " + uid + " on date " + formattedDate);
-        } else {
+            if (log.containsKey(activity.getActivityId())) {
+                double currEmission = log.get(activity.getActivityId());
+                double emission = computeEmission(activity);
+                log.put(activity.getActivityId(), currEmission + emission);
+                dayEmission += emission;
+            }
+            else {
+                double emission = computeEmission(activity);
+                log.put(activity.getActivityId(), emission);
+                dayEmission += emission;
+            }
+        }
+        else {
             System.out.println("Invalid reference");
         }
     }
@@ -169,6 +107,19 @@ public class DayTracker {
     }
 
     public String getDate() {
-        return date.toString();
+        return date;
+    }
+
+    public HashMap<Long, Double> getLog() {
+        return log;
+    }
+
+    public void saveDayTrackerData(String userId) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference dayRef = database.getReference("users").child(userId).child("days").child(date);
+
+        dayRef.child("log").setValue(log);
+        dayRef.child("dayEmission").setValue(dayEmission);
+        dayRef.child("date").setValue(date);
     }
 }

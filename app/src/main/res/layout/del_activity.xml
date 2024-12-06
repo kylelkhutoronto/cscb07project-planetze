@@ -8,7 +8,6 @@
     android:padding="15dp"
     tools:context=".DayTrackerView">
 
-    <!-- Title -->
     <TextView
         android:text="@string/del_activity"
         android:textSize="23sp"
@@ -18,7 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- Category Spinner -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -30,7 +28,6 @@
             android:padding="10dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Subtype Spinner -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -55,7 +52,6 @@
             tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Submit Button -->
     <Button
         android:id="@+id/submitButton"
         style="@style/Widget.AppCompat.Button"
